@@ -204,8 +204,14 @@
             Text = "Поисковик";
             Load += Form1_Load;
             Resize += Form1_Resize;
+            FormClosed += Form1_FormClosed;
             ResumeLayout(false);
             PerformLayout();
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Parameters.ParametersSave(textBox1.Text, textBox2.Text);
         }
 
         private void TextBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -227,6 +233,9 @@
             label5.Location = new Point(50, this.ClientSize.Height - 115);
             label6.Location = new Point(175, this.ClientSize.Height - 115);
             label7.Location = new Point(50, this.ClientSize.Height - 65);
+            string[] param = Parameters.ParametersLoad();
+            textBox1.Text = param[0];
+            textBox2.Text = param[1];
         }
         private void Form1_Resize(object sender, EventArgs e)
         {
